@@ -100,7 +100,7 @@
 			<div class="form-group"> 
 				<label for="i2">* Správa</label> 
 				<textarea name="content" class="form-control" rows="5" placeholder="Text správy" required><?php echo $sprava ?></textarea> 
-				<div class="invalid-feedback">Prosím vyplňte text správy!</div>
+				<div class="invalid-feedback"> daj text správy!</div>
 			</div> 
 			<div>
 				<label for="i3"><sma11><b>Antispam: </b><?php echo $antiSpam[$antiSpamKluc] ?></sma11></label> 
