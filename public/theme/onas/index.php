@@ -6,6 +6,7 @@
 
 <section>
 <h1>O nás</h1>
+<p>na skusku pre</p>
 </section>
 
 <?php 
