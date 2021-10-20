@@ -94,13 +94,13 @@
 			<div class="form-group"> 
 				<label for="i1">* Meno</label> 
 					<input type="text" name="name" class="form-control" pattern="[^ ][\D|0-9]{3,9}" placeholder="Autor správy" value="<?php echo $meno ?>" required> 
-				<div class="invalid-feedback">Prosím vyplňte správne túto položku! || 4-10 znakov</div>
+				<div class="invalid-feedback">Prosím vyplňte túto položku!  4-10 znakov</div>
 			</div> 
 
 			<div class="form-group"> 
 				<label for="i2">* Správa</label> 
 				<textarea name="content" class="form-control" rows="5" placeholder="Text správy" required><?php echo $sprava ?></textarea> 
-				<div class="invalid-feedback"> daj text správy!</div>
+				<div class="invalid-feedback">Prosím zedajte text správy!</div>
 			</div> 
 			<div>
 				<label for="i3"><sma11><b>Antispam: </b><?php echo $antiSpam[$antiSpamKluc] ?></sma11></label> 
