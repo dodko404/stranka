@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				
-				<input type="submit" value="Prihlásiť sa" class="btn btn-danger value container-fluid mt-4">
+				<input type="submit" value="Prihlásiť sa" class="btn btn-dark value container-fluid mt-4">
 
 			</form>
 
