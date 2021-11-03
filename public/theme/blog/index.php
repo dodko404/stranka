@@ -94,7 +94,7 @@
 			<div class="form-group"> 
 				<label for="i1">* Meno</label> 
 					<input type="text" name="name" class="form-control" pattern="[^ ][\D|0-9]{3,9}" placeholder="Autor správy" value="<?php echo $meno ?>" required> 
-				<div class="invalid-feedback">Prosím vyplňte túto položku!  4-10 znakov</div>
+				<div class="invalid-feedback">Prosím vyplňte túto položku!</div>
 			</div> 
 
 			<div class="form-group"> 

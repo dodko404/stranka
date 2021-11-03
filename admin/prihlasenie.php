@@ -1,29 +1,61 @@
 <?php
 
+$servername = "localhost";
+$username = "majkl";
+$password = "zErUKRNTsTQtJecF";
+$db = "balun_uzivatelia";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $db);
+
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+		$user = $_POST['meno'];
+		$heslo = md5($_POST['heslo']);
+		$sql = 'SELECT * FROM uzivatelia WHERE login="'.$user.'" AND heslo="'.$heslo.'"';
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+			  echo "id: " . $row["id"]. " - Name: " . $row["login"]. " " . $row["heslo"]. "<br>";
+			  $_SESSION["rola"] = $row["rola"];
+			}
+			session_start();
+			  
+			  $_SESSION["user"] = $user;
+			  header('Location: index.php');
+		  } else {
+			  echo 
+			  '<div class="alert alert-danger" role="alert">
+			  Nesprávne Meno alebo H
+			  eslo
+			</div>';
+		  }
+		 
 		
-		$pouzivatelia = file('uzivatelia.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-		$prihlasenie = [];
+		// $pouzivatelia = file('uzivatelia.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+		// $prihlasenie = [];
 
-		foreach ($pouzivatelia as $pouzivatel) {
-			list($meno, $heslo) = explode('::',$pouzivatel);
-			$prihlasenie[$meno] = $heslo;
-		}
+		// foreach ($pouzivatelia as $pouzivatel) {
+		// 	list($meno, $heslo) = explode('::',$pouzivatel);
+		// 	$prihlasenie[$meno] = $heslo;
+		// }
 
-		foreach ($prihlasenie as $user => $heslo) {
+		// foreach ($prihlasenie as $user => $heslo) {
 			
-			if ( $_POST['meno'] == $user) {
-				if ( $_POST['heslo'] == $heslo) {
-					session_start();
-					$_SESSION["user"] = $user;
-					header('Location: index.php');
-				}
-			}		
-		}
+		// 	if ( $_POST['meno'] == $user) {
+		// 		if ( $_POST['heslo'] == $heslo) {
+		// 			session_start();
+		// 			$_SESSION["user"] = $user;
+		// 			header('Location: index.php');
+		// 		}
+		// 	}		
+		// }
 	} else {
  		
 	}
-
+	$conn->close();
 ?>
 
 
