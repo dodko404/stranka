@@ -9,10 +9,11 @@ date_default_timezone_set("Europe/Bratislava");
 <?php 
 
 	$news = glob('*.txt');
+	
     
  	foreach ($news as $value) {
  		$date = strtotime(basename($value,".txt"));
- 		$spravy = file($value);
+ 		$spravy = file($value, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ;
  ?>	
   		<h1 style="margin-top: 30px"><?= $spravy[0] ?></h1>
   		<small style="margin-bottom: 30px">Publikované: <?= date('j.n.Y H:i',$date) ?></small><br>
@@ -22,12 +23,7 @@ date_default_timezone_set("Europe/Bratislava");
 	for ($i=2; $i < count($news)-2; $i++) { 
 		echo '<p style="margin-bottom: 50px">'.$spravy[$i].'</p>';
 	}
-?>	
-
-	<p style="margin-bottom: 50px"><?= $spravy[$i] ?></p>
-
-<?php 	
-
+	
  	}
 ?>	
 

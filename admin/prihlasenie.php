@@ -6,7 +6,7 @@ $password = "zErUKRNTsTQtJecF";
 $db = "balun_uzivatelia";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $db);
+$conn = new mysqli($servername, $username, $password, $db);	 
 
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -17,19 +17,19 @@ $conn = new mysqli($servername, $username, $password, $db);
 
 		if ($result->num_rows > 0) {
 			// output data of each row
-			while($row = $result->fetch_assoc()) {
-			  echo "id: " . $row["id"]. " - Name: " . $row["login"]. " " . $row["heslo"]. "<br>";
-			  $_SESSION["rola"] = $row["rola"];
-			}
+			$row = $result->fetch_assoc() ;
+
+
 			session_start();
-			  
+
+			  $_SESSION["rola"] = $row["rola"];
+			  $_SESSION["meno"] = $row["meno"];
 			  $_SESSION["user"] = $user;
 			  header('Location: index.php');
 		  } else {
 			  echo 
 			  '<div class="alert alert-danger" role="alert">
-			  Nesprávne Meno alebo H
-			  eslo
+			  Nesprávne Meno alebo Heslo
 			</div>';
 		  }
 		 

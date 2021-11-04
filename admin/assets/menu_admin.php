@@ -7,10 +7,13 @@
     }   
 ?>
 <div class="row">              
-    <div class="col-md-2 py-3 px-3">
+    <div class="col-md-2 py-3 px-3  bg-dark">
         <div>
             <img src="https://icon-library.com/images/icon-user/icon-user-15.jpg" alt="" class="img-thumbnail rounded-circle mx-auto d-block w-75">
-            <h2 class="text-center mt-2"><?php echo $_SESSION["user"]; ?></h2>
+            <h2 class="text-center mt-2 text-light"><?php echo $_SESSION["meno"]; ?></h2>
+            <p class="text-center mt-1 text-light"><?php echo $_SESSION["user"]; ?></p>
+            <p class="text-center mt-1 text-light"><?php echo $_SESSION["rola"]; ?></p>
+            
 
         </div>
         <div class="mt-5 nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
