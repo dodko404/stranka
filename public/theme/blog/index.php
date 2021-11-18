@@ -4,6 +4,35 @@
 	include'../../assets/rozne.php';
 	date_default_timezone_set("Europe/Bratislava");
 
+
+	$servername = "localhost";
+	$username = "majkl";
+	$password = "zErUKRNTsTQtJecF";
+	$db = "balun_prispevky";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $db);
+
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+	
+	$sql = "SELECT * FROM prispevky";
+	$result = $conn->query($sql);
+	$data = [];
+	
+	if ($result->num_rows > 0) {
+		// output data of each row
+		$data = $result->fetch_all(MYSQLI_ASSOC);
+		
+
+		//echo "id: " . $row["id"]. " - Meno: " . $row["meno"]. " - Prispevok: " . $row["prispevok"]." - Cas: " . $row["cas"]. "<br>";
+		
+	} else {
+		echo "0 results";
+	}
+
+
 	
 	$chyba = "";
 	$alert = "alert-danger";
@@ -123,19 +152,25 @@
 	<hr>
 	<div class="container">
 		<?php 
-			foreach ($prispevky as $prispevok) {
-				$datum = strtotime($prispevok[3]);
-				$datumTxt = date('j. ', $datum) .$mesiace[date('n', $datum) - 1]. date(' Y H:i', $datum); 
+
+
+
+			foreach ($data as $prispevok) {
+				//$datum = strtotime($prispevok[3]);
+				$datumTxt = $prispevok ['cas'] ; //date('j. ', $datum) .$mesiace[date('n', $datum) - 1]. date(' Y H:i', $datum); 
 			
 		 ?>	
-			<h4><?php echo $prispevok[1] ?></h4>
+			<h4><?php echo $prispevok['meno'] ?></h4>
 			<small><i> Odoslane: <?php echo $datumTxt ?></i></small>
 			<p>
-				<?php echo prelozBBCode(nl2br($prispevok[2])) ?>
+				<?php echo prelozBBCode(nl2br($prispevok['prispevok'])) ?>
 			</p>
 			<hr>
 		<?php 
+
+		
 			}
+			$conn->close();
 		 ?>
 	</div>
 </section>
